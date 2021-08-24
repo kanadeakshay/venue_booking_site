@@ -12,11 +12,11 @@ app.use(express.json());
 // Routes
 const dealerAuthRoutes = require('./routes/dealer.auth');
 const clientAuthRoutes = require('./routes/client.auth');
-// const venueRoutes = require('./routes/venue');
+const venueRoutes = require('./routes/venue');
 
 app.use('/api', dealerAuthRoutes);
 app.use('/api', clientAuthRoutes);
-// app.use('/api', venueRoutes);
+app.use('/api', venueRoutes);
 
 // mongodb connection
 const connectDB = (dburl) => {
