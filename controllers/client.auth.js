@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const shortid = require('shortid');
 
 const signup = (req, res) => {
     User.findOne({ email: req.body.email })
@@ -12,7 +13,7 @@ const signup = (req, res) => {
             const { firstName, lastName, email, password, contactNumber } = req.body;
             const _user = new User({
                 firstName, lastName, email, password, contactNumber,
-                username: Math.random().toString()
+                username: shortid.generate()
             })
 
             _user.save((error, data) => {
