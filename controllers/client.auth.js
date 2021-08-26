@@ -48,7 +48,21 @@ const signin = (req, res) => {
         })
 }
 
+const UserProfile = (req, res) => {
+    const { userId } = req.params;
+    if (userId) {
+        User.findById({ _id: userId })
+            .exec((error, _user) => {
+                if (error) return res.status(400).json({ msg: `Something went wrong`, error });
+                if (_user) return res.status(200).json({ _user });
+            })
+    } else {
+        return res.status(404).json({ msg: `User dosen't exits` });
+    }
+}
+
 module.exports = {
     signup,
-    signin
+    signin,
+    UserProfile
 }

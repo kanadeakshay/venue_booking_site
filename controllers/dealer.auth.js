@@ -48,7 +48,21 @@ const signin = (req, res) => {
         })
 }
 
+const DealerProfile = (req, res) => {
+    const { userId } = req.params;
+    if (userId) {
+        User.findById({ _id: userId })
+            .exec((error, _dealer) => {
+                if (error) return res.status(400).json({ msg: `Something went wrong`, error });
+                if (_dealer) return res.status(200).json({ _dealer });
+            })
+    } else {
+        return res.status(404).json({ msg: `Dealer dosen't exits` });
+    }
+}
+
 module.exports = {
     signup,
-    signin
+    signin,
+    DealerProfile
 }
