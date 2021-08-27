@@ -2,6 +2,7 @@ const express = require('express');
 const env = require('dotenv');
 const app = express();
 const mongoose = require('mongoose');
+const path = require('path');
 
 // enviourment variables
 env.config();
@@ -14,6 +15,7 @@ const dealerAuthRoutes = require('./routes/dealer.auth');
 const clientAuthRoutes = require('./routes/client.auth');
 const venueRoutes = require('./routes/venue');
 
+app.use("/public", express.static(path.join(__dirname, "uploads")));
 app.use('/api', dealerAuthRoutes);
 app.use('/api', clientAuthRoutes);
 app.use('/api', venueRoutes);
