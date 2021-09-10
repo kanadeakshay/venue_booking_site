@@ -36,7 +36,7 @@ const getVenueByVenueId = (req, res) => {
                 if (_venue) res.status(200).json({ _venue });
             })
     } else {
-        return res.status(400).json({ msg: `Params required` });
+        return res.status(400).json({ msg: `Venue dosen't exit` });
     }
 }
 
