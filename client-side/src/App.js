@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Home from './containers/Home';
+import Signin from './containers/Signin';
+import { useDispatch } from 'react-redux';
+import { isUserLoggedIn } from './actions/auth.actions';
+import Signup from './containers/Signup';
 
 function App() {
+
+  const dispatch = useDispatch();
+  const auth = useDispatch(state => state.auth)
+
+  useEffect(() => {
+    if (!auth.authenticate) {
+      dispatch(isUserLoggedIn())
+    }
+  }, [])
+
   return (
     <div className="App">
-      <h1>Venue Booking Site 🎴</h1>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/signin" component={Signin} />
+        <Route path="/signup" component={Signup} />
+      </Switch>
     </div>
   );
 }
