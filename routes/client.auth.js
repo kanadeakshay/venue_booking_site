@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/signup', signup);
 router.post('/signin', signin);
-router.post('/sign-out', signout)
+router.post('/sign-out', requireSignIn, signout)
 router.get('/user/:userId', requireSignIn, clientMiddleware, UserProfile);
 
 module.exports = router;
