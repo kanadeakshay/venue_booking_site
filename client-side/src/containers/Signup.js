@@ -24,11 +24,12 @@ const Signup = (props) => {
     }
 
     const auth = useSelector(state => state.auth);
-    const regStats = useSelector(state => state.regStats);
+    const registrationStatus = useSelector(state => state.registrationStatus);
     if (auth.authenticate) {
         return <Redirect to={'/'} />
     }
-    if (regStats.loading) {
+
+    if (registrationStatus.loading) {
         return (
             <Layout>
                 <div className='text-center' style={{ marginTop: '60px' }}>
