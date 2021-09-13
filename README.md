@@ -12,6 +12,8 @@ cd venue_booking_site
 
 2. Install packages
 
+- Backend => In root directory run following command
+
 ```bash
 npm install
 ```
@@ -34,7 +36,7 @@ git pull
 After you done making some changes
 
 ```bash
-git checkout -u <branch_name>
+git checkout -b <branch_name>
 git add .
 git commit -m "message"
 git push
