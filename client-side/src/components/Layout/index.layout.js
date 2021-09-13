@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { signout } from '../../actions/auth.actions';
+import { userInfo } from '../../actions/userInfo.actions';
 
 const Layout = (props) => {
 
@@ -13,13 +14,18 @@ const Layout = (props) => {
         dispatch(signout());
     }
 
+    const getUserInfo = () => {
+        const { _id, role } = auth.user;
+        dispatch(userInfo(_id, role));
+    }
+
     const LoggedInLinks = () => {
         return (
             <Nav>
                 <li className="nav-item">
-                    <span className="nav-link" onClick={logout} style={{ textTransform: 'capitalize' }}>
-                        Welcome {auth.user.firstName}
-                    </span>
+                    <NavLink to="profile" className="nav-link" onClick={getUserInfo} style={{ textTransform: 'capitalize' }}>
+                        🐱‍👤{auth.user.firstName}
+                    </NavLink>
                 </li>
                 <li className="nav-item" style={{ cursor: "pointer" }}>
                     <span className="nav-link" onClick={logout}>SIGN OUT</span>
