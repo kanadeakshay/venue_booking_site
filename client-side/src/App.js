@@ -5,6 +5,7 @@ import Signin from './containers/Signin';
 import { useDispatch } from 'react-redux';
 import { isUserLoggedIn } from './actions/auth.actions';
 import Signup from './containers/Signup';
+import ProfilePage from './containers/Profile';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" exact component={Home} />
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
+        <Route path="/profile" component={ProfilePage} />
       </Switch>
     </div>
   );
