@@ -34,12 +34,12 @@ const signin = (req, res) => {
                         process.env.jwt_secret,
                         { expiresIn: '2h' }
                     )
-                    const { _id, firstName, lastName, email, role, fullName, username, contactNumber } = user;
+                    const { _id, firstName, lastName, profilePicture, email, role, fullName, username, contactNumber } = user;
                     res.cookie('token', token, { expiresIn: '2h' });
                     res.status(200).json({
                         token,
                         user: {
-                            _id, firstName, lastName, email, role, fullName, username, contactNumber
+                            _id, firstName, lastName, profilePicture, email, role, fullName, username, contactNumber
                         }
                     })
                 } else {
@@ -53,9 +53,14 @@ const DealerProfile = (req, res) => {
     const { userId } = req.params;
     if (userId) {
         User.findById({ _id: userId })
-            .exec((error, _dealer) => {
+            .exec((error, _user) => {
                 if (error) return res.status(400).json({ msg: `Something went wrong`, error });
-                if (_dealer) return res.status(200).json({ _dealer });
+                if (_user) {
+                    const { _id, fullName, firstName, lastName, profilePicture, email, role, username, contactNumber, createdAt } = _user;
+                    return res.status(200).json({
+                        user: { _id, fullName, firstName, lastName, profilePicture, email, role, username, contactNumber, createdAt }
+                    });
+                }
             })
     } else {
         return res.status(404).json({ msg: `Dealer dosen't exits` });
