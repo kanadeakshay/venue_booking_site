@@ -13,12 +13,16 @@ cd venue_booking_site
 2. Install packages
 
 - Backend => In root directory run following command
+- Frontend => In client-side folder run same following command
 
 ```bash
 npm install
 ```
 
 3. Run it 🚴‍♂️
+
+- Backend => First run following command in root directory, it will start server on port 2000
+- Frontend => Second run same command in client side folder on another terminal, it will lauch react app
 
 ```bash
 npm start
