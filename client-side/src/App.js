@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { isUserLoggedIn } from './actions/auth.actions';
 import Signup from './containers/Signup';
 import ProfilePage from './containers/Profile';
+import VenuePage from './containers/Venue';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/profile" component={ProfilePage} />
+        <Route path="/venue" component={VenuePage} />
       </Switch>
     </div>
   );
