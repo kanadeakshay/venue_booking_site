@@ -4,6 +4,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { signout } from '../../actions/auth.actions';
 import { userInfo } from '../../actions/userInfo.actions';
+import { getOwnerVenues } from '../../actions/venue.actions';
 
 const Layout = (props) => {
 
@@ -17,15 +18,19 @@ const Layout = (props) => {
     const getUserInfo = () => {
         const { _id, role } = auth.user;
         dispatch(userInfo(_id, role));
+        if (role === 'dealer') {
+            dispatch(getOwnerVenues(_id));
+        }
     }
 
-    const LoggedInLinks = () => {
+    const LoggedInLinks = (props) => {
+        const { _id } = auth.user;
         return (
             <Nav>
                 <li className="nav-item">
-                    <NavLink to="profile" className="nav-link" onClick={getUserInfo} style={{ textTransform: 'capitalize' }}>
+                    <Link to={`/profile/${_id}`} className="nav-link" onClick={getUserInfo} style={{ textTransform: 'capitalize' }}>
                         🐱‍👤{auth.user.firstName}
-                    </NavLink>
+                    </Link>
                 </li>
                 <li className="nav-item" style={{ cursor: "pointer" }}>
                     <span className="nav-link" onClick={logout}>SIGN OUT</span>
@@ -49,7 +54,7 @@ const Layout = (props) => {
 
     return (
         <>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ marginBottom: "30px" }}>
                 <Container>
                     <Link to="/" className="navbar-brand">🤝KAPPA</Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
