@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Spinner, Button } from 'react-bootstrap';
 import Layout from '../components/Layout/index.layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import VenueCard from '../components/UI/VenueCard';
 import { ProfileCard, UserInfoCard } from '../components/UI/ProfileCards';
-import { ClientHistory } from '../components/UI/ClientHistory';
+import { DealsHistory } from '../components/UI/DealsHistory';
+import { isEmpty } from '../helpers/isObjEmpty';
+import AddVenueModel from '../components/UI/AddVenueModel';
 
 const ProfilePage = (props) => {
 
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
     const userInfo = useSelector(state => state.userInfo);
+    const ownerVenues = useSelector(state => state.ownerVenues);
 
-    if (!auth.authenticate) {
+    const [addVenueModalShow, setAddVenueModalShow] = useState(false);
+
+    if (auth.token === null) {
         return <Redirect to={'/'} />
     }
     if (userInfo.loading) {
@@ -49,25 +54,53 @@ const ProfilePage = (props) => {
 
                         <div className="col-md-8">
                             <div className="card mb-3">
-                                <ClientHistory />
+                                <DealsHistory role={role} />
                             </div>
                             {
                                 userInfo.user.role === 'dealer' ?
                                     <>
-                                        <Button variant="success">+ New Venue</Button>
+                                        <Button
+                                            variant="success" onClick={() => setAddVenueModalShow(true)}>
+                                            + New Venue
+                                        </Button>
+
                                         <hr></hr>
                                         <div className="row gutters-sm">
                                             <h4 style={{ marginBottom: "15px" }}>Your All venues</h4>
-                                            <div className="col-sm-6 mb-3">
-                                                <VenueCard />
-                                            </div>
-                                            <div className="col-sm-6 mb-3">
-                                                <VenueCard />
-                                            </div>
+                                            {
+                                                isEmpty(ownerVenues.allvenues) ?
+                                                    <h5 className="text-muted">
+                                                        Currently you don't have any venues to rent😢
+                                                    </h5>
+                                                    :
+                                                    ownerVenues.allvenues.map((venue) => {
+                                                        const { _id, venueName, address, location, category, price, venuePictures } = venue;
+                                                        return (
+                                                            <div className="col-sm-6 mb-3">
+                                                                <VenueCard
+                                                                    img1={venuePictures[0].img}
+                                                                    img2={venuePictures[1].img}
+                                                                    venueName={venueName}
+                                                                    _id={_id}
+                                                                    category={category}
+                                                                    address={address}
+                                                                    location={location}
+                                                                    price={price}
+                                                                    style={{ width: "800px", height: "200px" }}
+                                                                    isHide={true}
+                                                                />
+                                                            </div>
+                                                        )
+                                                    })
+                                            }
                                         </div>
                                     </>
                                     : <></>
                             }
+                            <AddVenueModel
+                                show={addVenueModalShow}
+                                onHide={() => setAddVenueModalShow(false)}
+                            />
                         </div>
                     </div>
 
