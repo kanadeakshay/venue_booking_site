@@ -12,6 +12,10 @@ const venueSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    description: {
+        type: String,
+        required: true
+    },
     address: {
         type: String,
         required: true,
@@ -41,4 +45,4 @@ const venueSchema = new mongoose.Schema({
     owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Venue', venueSchema)
+module.exports = mongoose.model('Venue', venueSchema);
