@@ -1,32 +1,43 @@
-import { venueConstants } from '../actions/constants';
+import { venueConstants } from "../actions/constants";
 
 const initialState = {
+    venue: {
+        _id: '',
+        venueName: '',
+        description: '',
+        address: '',
+        location: '',
+        category: '',
+        price: '',
+        venuePictures: [],
+        owner: '',
+        reviews: []
+    },
+    error: null,
     message: '',
-    allVenues: [],
     loading: false
 }
 
-const venuesInfoReducer = (state = initialState, action) => {
-    console.log(action);
+const oneVenueInfoReducer = (state = initialState, action) => {
     switch (action.type) {
-        case venueConstants.GETALL_VENUES_REQUEST:
+        case venueConstants.GETONE_VENUE_REQUEST:
             state = {
                 ...state,
                 loading: true
             }
             break;
-        case venueConstants.GETALL_VENUES_SUCCESS:
+        case venueConstants.GETONE_VENUE_SUCCESS:
             state = {
                 ...state,
-                loading: false,
-                allVenues: action.payload
+                venue: action.payload.venue,
+                loading: false
             }
             break;
-        case venueConstants.GETALL_VENUES_FAILURE:
+        case venueConstants.GETONE_VENUE_FAILURE:
             state = {
                 ...state,
                 loading: false,
-                message: 'Something went wrong...!'
+                message: action.payload.msg
             }
             break;
 
@@ -36,4 +47,4 @@ const venuesInfoReducer = (state = initialState, action) => {
     return state;
 }
 
-export default venuesInfoReducer
+export default oneVenueInfoReducer
