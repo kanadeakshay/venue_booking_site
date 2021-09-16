@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import PrivateRoute from './components/HOC/PrivateRoute';
 import Home from './containers/Home';
 import Signin from './containers/Signin';
 import { useDispatch } from 'react-redux';
@@ -25,8 +26,8 @@ function App() {
         <Route path="/" exact component={Home} />
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
-        <Route path="/profile" component={ProfilePage} />
-        <Route path="/venue" component={VenuePage} />
+        <PrivateRoute path="/profile/:id" component={ProfilePage} />
+        <Route path="/venue/:id" component={VenuePage} />
       </Switch>
     </div>
   );
