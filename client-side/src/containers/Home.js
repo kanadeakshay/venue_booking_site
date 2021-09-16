@@ -5,6 +5,7 @@ import VenueCard from '../components/UI/VenueCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVenues } from '../actions/venue.actions';
 import { getPublicURL } from '../urlConfig';
+import { isEmpty } from '../helpers/isObjEmpty';
 
 function Home() {
 
@@ -13,8 +14,7 @@ function Home() {
 
     useEffect(() => {
         dispatch(getVenues());
-    }, [])
-
+    }, []);
 
     if (allVenuesInfo.loading) {
         return (
@@ -32,22 +32,32 @@ function Home() {
             <Container>
                 <div className="row" style={{ marginTop: "30px" }}>
                     {
-                        allVenuesInfo.allVenues.map((venue) => {
-                            const { venueName, address, location, category, price, venuePictures } = venue;
-                            return (
-                                <div className="col-md-4">
-                                    <VenueCard
-                                        img1={venuePictures[0].img}
-                                        img2={venuePictures[1].img}
-                                        venueName={venueName}
-                                        category={category}
-                                        address={address}
-                                        location={location}
-                                        price={price}
-                                    />
-                                </div>
-                            )
-                        })
+                        isEmpty(allVenuesInfo.allVenues) ?
+                            <div className='text-center' style={{ marginTop: '60px' }}>
+                                <h1>
+                                    No Venues currently😢<br></br>
+                                    Check again after sometime
+                                </h1>
+                            </div>
+                            :
+                            allVenuesInfo.allVenues.map((venue) => {
+                                const { _id, venueName, address, location, category, price, venuePictures } = venue;
+                                return (
+                                    <div className="col-md-4">
+                                        <VenueCard
+                                            img1={venuePictures[0].img}
+                                            img2={venuePictures[1].img}
+                                            venueName={venueName}
+                                            _id={_id}
+                                            category={category}
+                                            address={address}
+                                            location={location}
+                                            price={price}
+                                            style={{ width: "800px", height: "200px" }}
+                                        />
+                                    </div>
+                                )
+                            })
                     }
                 </div>
             </Container>
