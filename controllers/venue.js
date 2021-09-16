@@ -2,7 +2,7 @@ const Venue = require('../models/venue');
 const slugify = require('slugify');
 
 const createVenue = (req, res) => {
-    const { venueName, address, location, category, price } = req.body;
+    const { venueName, address, location, category, price, description } = req.body;
     let venuePictures = [];
 
     if (req.files.length > 0) {
@@ -15,6 +15,7 @@ const createVenue = (req, res) => {
         venueName: venueName,
         slug: slugify(venueName),
         address: address,
+        description: description,
         location: location,
         category: category,
         price: price,
