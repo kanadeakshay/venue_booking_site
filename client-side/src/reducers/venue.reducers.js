@@ -10,7 +10,7 @@ const initialState = {
         category: '',
         price: '',
         venuePictures: [],
-        owner: '',
+        ownerInfo: {},
         reviews: []
     },
     error: null,
