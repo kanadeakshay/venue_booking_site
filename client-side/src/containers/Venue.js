@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Button, Spinner } from 'react-bootstrap';
 import Layout from '../components/Layout/index.layout';
 import { ImgsCard } from '../components/UI/ImgsCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneVenue } from '../actions/venue.actions';
 import { getPublicURL } from '../urlConfig';
+import { userInfo } from '../actions/userInfo.actions';
 
 const VenuePage = (props) => {
 
+    const dispatch = useDispatch();
     const oneVenueInfo = useSelector(state => state.oneVenueInfo);
-    const { venueName, description, address, location, category, price, venuePictures, owner } = oneVenueInfo.venue;
+    const { venueName, description, address, location, category, price, venuePictures, ownerInfo } = oneVenueInfo.venue;
 
     if (oneVenueInfo.loading) {
         return (
@@ -25,7 +27,7 @@ const VenuePage = (props) => {
     return (
         <Layout>
             <Container>
-                <section className="mb-5" style={{ marginTop: "50px" }}>
+                <section className="mb-5">
                     <div className="row">
                         <div className="col-md-6 mb-4 mb-md-0">
                             <ImgsCard
@@ -65,11 +67,11 @@ const VenuePage = (props) => {
                                     <tbody>
                                         <tr>
                                             <th className="pl-0 w-25" scope="row"><strong>Dealer Name</strong></th>
-                                            <td>{owner}</td>
+                                            <td style={{ textTransform: 'capitalize' }}>{ownerInfo.ownerName}</td>
                                         </tr>
                                         <tr>
                                             <th className="pl-0 w-25" scope="row"><strong>Contact no</strong></th>
-                                            <td>{owner}</td>
+                                            <td>{ownerInfo.contactNumber}</td>
                                         </tr>
                                     </tbody>
                                 </table>

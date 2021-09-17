@@ -43,10 +43,10 @@ const Layout = (props) => {
         return (
             <Nav>
                 <li className="nav-item">
-                    <NavLink to="signin" className="nav-link">SIGN IN</NavLink>
+                    <NavLink to={`/signin`} className="nav-link">SIGN IN</NavLink>
                 </li>
                 <li className="nav-item" >
-                    <NavLink to="signup" className="nav-link">SIGN UP</NavLink>
+                    <NavLink to={`/signup`} className="nav-link">SIGN UP</NavLink>
                 </li>
             </Nav>
         );
@@ -56,7 +56,7 @@ const Layout = (props) => {
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ marginBottom: "30px" }}>
                 <Container>
-                    <Link to="/" className="navbar-brand">🤝KAPPA</Link>
+                    <Link to={`/`} className="navbar-brand">🤝KAPPA</Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto"></Nav>

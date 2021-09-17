@@ -22,26 +22,28 @@ const Signin = () => {
     return (
         <Layout>
             <Container>
-                <Row className='text-center'>
-                    <Col md="auto">
-                        <Card style={{ width: '18rem', marginTop: "30px" }}>
-                            < Card.Img variant="top" src={client_signin} />
-                            <Card.Body>
-                                <Card.Title>🧛‍♂️Log In as</Card.Title>
-                                <Button variant="primary" onClick={() => setUserModalShow(true)}>Client/User</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col md="auto">
-                        <Card style={{ width: '18rem', marginTop: "30px" }}>
-                            < Card.Img variant="top" src={dealer_signin} />
-                            <Card.Body>
-                                <Card.Title>🧙‍♂️Log In as</Card.Title>
-                                <Button variant="primary" onClick={() => setDealerModalShow(true)}>Dealer/Renter</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Row className='text-center'>
+                        <Col md="auto" className="d-flex justify-content-center">
+                            <Card style={{ width: '18rem', marginTop: "30px" }}>
+                                < Card.Img variant="top" src={client_signin} />
+                                <Card.Body>
+                                    <Card.Title>🧛‍♂️Log In as</Card.Title>
+                                    <Button variant="primary" onClick={() => setUserModalShow(true)}>Client/User</Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col md="auto" className="d-flex justify-content-center">
+                            <Card style={{ width: '18rem', marginTop: "30px" }}>
+                                < Card.Img variant="top" src={dealer_signin} />
+                                <Card.Body>
+                                    <Card.Title>🧙‍♂️Log In as</Card.Title>
+                                    <Button variant="primary" onClick={() => setDealerModalShow(true)}>Dealer/Renter</Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                </div>
 
                 <LoginModel
                     show={userModalShow}

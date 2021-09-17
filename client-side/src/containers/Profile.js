@@ -38,7 +38,7 @@ const ProfilePage = (props) => {
         <Layout>
             <Container>
                 <div className="main-body" >
-                    <div className="row gutters-sm" style={{ marginTop: '30px' }}>
+                    <div className="row gutters-sm">
                         <div className="col-md-4 mb-3">
                             <ProfileCard
                                 fullName={fullName}

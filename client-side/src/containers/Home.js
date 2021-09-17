@@ -30,7 +30,7 @@ function Home() {
     return (
         <Layout>
             <Container>
-                <div className="row" style={{ marginTop: "30px" }}>
+                <div className="row">
                     {
                         isEmpty(allVenuesInfo.allVenues) ?
                             <div className='text-center' style={{ marginTop: '60px' }}>
