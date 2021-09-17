@@ -30,7 +30,7 @@ const signin = (req, res) => {
             if (user) {
                 if (user.authenticate(req.body.password) && user.role === 'dealer') {
                     const token = jwt.sign(
-                        { id: user._id, role: user.role },
+                        { id: user._id, role: user.role, fullName: user.fullName, contactNumber: user.contactNumber },
                         process.env.jwt_secret,
                         { expiresIn: '2h' }
                     )

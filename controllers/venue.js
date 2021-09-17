@@ -3,8 +3,12 @@ const slugify = require('slugify');
 
 const createVenue = (req, res) => {
     const { venueName, address, location, category, price, description } = req.body;
-    let venuePictures = [];
+    const ownerInfo = {
+        ownerName: req.user.fullName,
+        contactNumber: req.user.contactNumber
+    }
 
+    let venuePictures = [];
     if (req.files.length > 0) {
         venuePictures = req.files.map((file) => {
             return { img: file.filename };
@@ -20,7 +24,8 @@ const createVenue = (req, res) => {
         category: category,
         price: price,
         venuePictures,
-        owner: req.user.id
+        ownerId: req.user.id,
+        ownerInfo: ownerInfo
     });
     venue.save((error, _venue) => {
         if (error) return res.status(400).json({ msg: `While saving venue omething went wrong`, error });
@@ -44,7 +49,7 @@ const getVenueByVenueId = (req, res) => {
 const getAllVenuesByOwnerId = async (req, res) => {
     const { ownerId } = req.params;
     if (ownerId) {
-        Venue.find({ owner: ownerId })
+        Venue.find({ ownerId: ownerId })
             .exec((error, _allvenues) => {
                 if (error) return res.status(400).json({ msg: `Something went wrong`, error });
                 if (_allvenues) res.status(200).json({ _allvenues });
