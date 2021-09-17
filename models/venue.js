@@ -42,7 +42,11 @@ const venueSchema = new mongoose.Schema({
             review: String
         }
     ],
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+    ownerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    ownerInfo: {
+        ownerName: String,
+        contactNumber: String
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Venue', venueSchema);
