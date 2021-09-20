@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getOneVenue } from '../../actions/venue.actions';
 import { getPublicURL } from '../../urlConfig';
 import { ImgsCard } from './ImgsCard';
 import { useDispatch } from 'react-redux';
+import BookingModel from './BookingModel';
 
 const VenueCard = (props) => {
 
-    const { img1, img2, category, venueName, _id, price, location, address, style, isHide } = props;
+    const [bookingModalShow, setBookingModalShow] = useState(false);
+    const { img1, img2, category, venueName, _id, price, location, address, style, isDelete } = props;
 
     const dispatch = useDispatch()
     const getVenueInfo = () => {
@@ -36,12 +38,21 @@ const VenueCard = (props) => {
                         <Button variant="primary" onClick={getVenueInfo}>Details</Button>{' '}
                     </Link>
                     {
-                        isHide === true ?
-                            <></>
+                        isDelete === true ?
+                            <Button variant="danger">Delete</Button>
                             :
-                            <Button variant="danger">Book</Button>
+                            <Button variant="danger" onClick={() => setBookingModalShow(true)}>Book</Button>
                     }
-
+                    <BookingModel
+                        _id={_id}
+                        venueName={venueName}
+                        price={price}
+                        category={category}
+                        address={address}
+                        location={location}
+                        show={bookingModalShow}
+                        onHide={() => setBookingModalShow(false)}
+                    />
                 </div>
             </div>
         </div>

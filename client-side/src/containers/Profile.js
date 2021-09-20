@@ -87,7 +87,7 @@ const ProfilePage = (props) => {
                                                                     location={location}
                                                                     price={price}
                                                                     style={{ width: "800px", height: "200px" }}
-                                                                    isHide={true}
+                                                                    isDelete={true}
                                                                 />
                                                             </div>
                                                         )
