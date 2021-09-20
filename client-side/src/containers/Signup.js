@@ -71,7 +71,7 @@ const Signup = (props) => {
                             <Input
                                 label='Contact no'
                                 type='tel'
-                                placeholder='Enter your mob no'
+                                placeholder='Mobile no'
                                 value={contactNumber}
                                 onChange={(e) => setContactNumber(e.target.value)}
                             />
