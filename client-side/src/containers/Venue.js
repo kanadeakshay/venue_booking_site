@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Button, Spinner } from 'react-bootstrap';
 import Layout from '../components/Layout/index.layout';
 import { ImgsCard } from '../components/UI/ImgsCard';
@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOneVenue } from '../actions/venue.actions';
 import { getPublicURL } from '../urlConfig';
 import { userInfo } from '../actions/userInfo.actions';
+import BookingModel from '../components/UI/BookingModel';
 
 const VenuePage = (props) => {
 
     const dispatch = useDispatch();
+    const [bookingModalShow, setBookingModalShow] = useState(false);
     const oneVenueInfo = useSelector(state => state.oneVenueInfo);
-    const { venueName, description, address, location, category, price, venuePictures, ownerInfo } = oneVenueInfo.venue;
+    const { _id, venueName, description, address, location, category, price, venuePictures, ownerInfo } = oneVenueInfo.venue;
 
     if (oneVenueInfo.loading) {
         return (
@@ -79,7 +81,17 @@ const VenuePage = (props) => {
 
                             <hr></hr>
 
-                            <Button variant="danger">Book</Button>
+                            <Button variant="danger" onClick={() => setBookingModalShow(true)}>Book</Button>
+                            <BookingModel
+                                _id={_id}
+                                venueName={venueName}
+                                price={price}
+                                category={category}
+                                address={address}
+                                location={location}
+                                show={bookingModalShow}
+                                onHide={() => setBookingModalShow(false)}
+                            />
                         </div>
                     </div>
                 </section>
