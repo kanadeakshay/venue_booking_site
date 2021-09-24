@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 import { getOneVenue } from '../../actions/venue.actions';
 import { getPublicURL } from '../../urlConfig';
 import { ImgsCard } from './ImgsCard';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import BookingModel from './BookingModel';
 
 const VenueCard = (props) => {
 
     const [bookingModalShow, setBookingModalShow] = useState(false);
-    const { img1, img2, category, venueName, _id, price, location, address, style, isDelete } = props;
+    const { img1, img2, category, venueName, ownerId, _id, price, location, address, style, isDelete } = props;
+
+    const auth = useSelector(state => state.auth);
 
     const dispatch = useDispatch()
     const getVenueInfo = () => {
@@ -51,6 +53,7 @@ const VenueCard = (props) => {
                         address={address}
                         location={location}
                         show={bookingModalShow}
+                        ownerId={ownerId}
                         onHide={() => setBookingModalShow(false)}
                     />
                 </div>
