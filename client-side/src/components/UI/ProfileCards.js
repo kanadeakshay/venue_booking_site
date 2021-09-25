@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Avatar from 'boring-avatars';
 
 const ProfileCard = (props) => {
     const { fullName, email, contactNumber } = props;
@@ -6,7 +7,12 @@ const ProfileCard = (props) => {
         <div className="card">
             <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User" className="rounded-circle" style={{ width: '100px' }} />
+                    <Avatar
+                        size={100}
+                        name={fullName}
+                        variant="bauhaus"
+                        colors={["#A3A948", "#EDB92E", "#F85931", "#CE1836", "#009989"]}
+                    />
                     <div className="mt-3">
                         <h4 style={{ textTransform: 'capitalize' }}>{fullName}</h4>
                         <p className="text-secondary mb-1">Email - {email}</p>
