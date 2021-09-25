@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { LoginModel } from '../components/UI/LoginModel';
 
 // Images
-import client_signin from '../assets/images/client-signin.png';
-import dealer_signin from '../assets/images/dealer-signin.png';
+import client_signin from '../assets/images/client-signin.svg';
+import dealer_signin from '../assets/images/dealer-signin.svg';
 
 const Signin = () => {
 
@@ -21,14 +21,14 @@ const Signin = () => {
 
     return (
         <Layout>
-            <Container>
+            <Container className="text-center">
+                <h2>✨Log In Options✨</h2>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Row className='text-center'>
                         <Col md="auto" className="d-flex justify-content-center">
                             <Card style={{ width: '18rem', marginTop: "30px" }}>
                                 < Card.Img variant="top" src={client_signin} />
                                 <Card.Body>
-                                    <Card.Title>🧛‍♂️Log In as</Card.Title>
                                     <Button variant="primary" onClick={() => setUserModalShow(true)}>Client/User</Button>
                                 </Card.Body>
                             </Card>
@@ -37,7 +37,6 @@ const Signin = () => {
                             <Card style={{ width: '18rem', marginTop: "30px" }}>
                                 < Card.Img variant="top" src={dealer_signin} />
                                 <Card.Body>
-                                    <Card.Title>🧙‍♂️Log In as</Card.Title>
                                     <Button variant="primary" onClick={() => setDealerModalShow(true)}>Dealer/Renter</Button>
                                 </Card.Body>
                             </Card>
@@ -48,13 +47,13 @@ const Signin = () => {
                 <LoginModel
                     show={userModalShow}
                     onHide={() => setUserModalShow(false)}
-                    title='🐱‍🏍 User/Client Sign In'
+                    title='🛑 User/Client Sign In'
                     userType='client'
                 />
                 <LoginModel
                     show={DealerModalShow}
                     onHide={() => setDealerModalShow(false)}
-                    title='🐱‍👤 Dealer/Renter Sign In'
+                    title='🛑 Dealer/Renter Sign In'
                     userType='dealer'
                 />
             </Container>
