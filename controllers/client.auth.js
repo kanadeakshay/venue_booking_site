@@ -7,7 +7,7 @@ const signup = (req, res) => {
         .exec((error, user) => {
             // If user already exists
             if (error) return res.status(400).json({ msg: `Something went wrong`, error });
-            if (user) return res.status(400).json({ msg: 'User already exits' });
+            if (user) return res.status(409).json({ msg: 'User already exits' });
 
             // If new user trys to login
             const { firstName, lastName, email, password, contactNumber } = req.body;
@@ -45,6 +45,9 @@ const signin = (req, res) => {
                 } else {
                     return res.status(400).json({ msg: `Invalid Password` })
                 }
+            }
+            if (!user) {
+                return res.status(404).json({ msg: `User dosen't not exits` })
             }
         })
 }
