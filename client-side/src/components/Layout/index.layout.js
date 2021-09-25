@@ -5,10 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signout } from '../../actions/auth.actions';
 import { userInfo } from '../../actions/userInfo.actions';
 import { getOwnerVenues } from '../../actions/venue.actions';
+import getDeals from '../../actions/dealsHistory.actions';
+import Avatar from 'boring-avatars';
 
 const Layout = (props) => {
 
     const auth = useSelector(state => state.auth);
+    const serverStatus = useSelector(state => state.serverStatus);
     const dispatch = useDispatch();
 
     const logout = () => {
@@ -21,6 +24,7 @@ const Layout = (props) => {
         if (role === 'dealer') {
             dispatch(getOwnerVenues(_id));
         }
+        dispatch(getDeals(role, _id))
     }
 
     const LoggedInLinks = (props) => {
@@ -52,21 +56,30 @@ const Layout = (props) => {
         );
     }
 
-    return (
-        <>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ marginBottom: "30px" }}>
-                <Container>
-                    <Link to={`/`} className="navbar-brand">🤝KAPPA</Link>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="me-auto"></Nav>
-                        {auth.authenticate ? LoggedInLinks() : NotLoggedInLinks()}
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-            {props.children}
-        </>
-    )
+    if (serverStatus.message === null) {
+        return (
+            <>
+                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ marginBottom: "30px" }}>
+                    <Container>
+                        <Link to={`/`} className="navbar-brand">🤝KAPPA</Link>
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                        <Navbar.Collapse id="responsive-navbar-nav">
+                            <Nav className="me-auto"></Nav>
+                            {auth.authenticate ? LoggedInLinks() : NotLoggedInLinks()}
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+                {props.children}
+            </>
+        )
+    } else {
+        return (
+            <>
+                <h1 className="text-center" style={{ marginTop: "80px" }}>{serverStatus.message}</h1>
+            </>
+        )
+    }
+
 }
 
 export default Layout
