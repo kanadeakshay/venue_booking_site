@@ -7,13 +7,14 @@ import { getOneVenue } from '../actions/venue.actions';
 import { getPublicURL } from '../urlConfig';
 import { userInfo } from '../actions/userInfo.actions';
 import BookingModel from '../components/UI/BookingModel';
+import { Redirect } from 'react-router';
 
 const VenuePage = (props) => {
 
     const dispatch = useDispatch();
     const [bookingModalShow, setBookingModalShow] = useState(false);
     const oneVenueInfo = useSelector(state => state.oneVenueInfo);
-    const { _id, venueName, description, address, location, category, price, venuePictures, ownerInfo } = oneVenueInfo.venue;
+    const { _id, venueName, description, address, location, category, price, venuePictures, ownerInfo, ownerId } = oneVenueInfo.venue;
 
     if (oneVenueInfo.loading) {
         return (
@@ -24,6 +25,9 @@ const VenuePage = (props) => {
                 </div>
             </Layout>
         );
+    }
+    if (oneVenueInfo.venue._id === '') {
+        return <Redirect to={`/`} />
     }
 
     return (
@@ -89,6 +93,7 @@ const VenuePage = (props) => {
                                 category={category}
                                 address={address}
                                 location={location}
+                                ownerId={ownerId}
                                 show={bookingModalShow}
                                 onHide={() => setBookingModalShow(false)}
                             />
