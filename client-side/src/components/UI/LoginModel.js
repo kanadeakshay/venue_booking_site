@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import Input from './Input';
 import { userlogin } from '../../actions/auth.actions';
@@ -8,7 +8,7 @@ const LoginModel = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const auth = useSelector(state => state.auth);
     const dispatch = useDispatch();
@@ -48,7 +48,13 @@ const LoginModel = (props) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <Button variant="primary" type="submit">
+                    {
+                        auth.message === '' ?
+                            null
+                            :
+                            <h5 style={{ color: 'red' }}>{errorMessage}</h5>
+                    }
+                    <Button onClick={() => setErrorMessage(auth.message)} variant="primary" type="submit">
                         Sign In
                     </Button>
                 </Form>
