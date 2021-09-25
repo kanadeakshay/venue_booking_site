@@ -6,6 +6,9 @@ import venuesInfoReducer from './allVenues.reducers';
 import oneVenueInfoReducer from './venue.reducers';
 import getOwnerVenuesReducer from './ownerVenues.reducers';
 import addVenueReducer from './addVenue.reducers';
+import checkoutReducer from './checkout.reducer';
+import dealsReducer from './dealsHistory.reducers';
+import serverReducer from './server.reducers';
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -14,7 +17,10 @@ const rootReducer = combineReducers({
     allVenuesInfo: venuesInfoReducer,
     oneVenueInfo: oneVenueInfoReducer,
     ownerVenues: getOwnerVenuesReducer,
-    addVenueStatus: addVenueReducer
+    addVenueStatus: addVenueReducer,
+    checkoutStatus: checkoutReducer,
+    deals: dealsReducer,
+    serverStatus: serverReducer
 });
 
 export default rootReducer
