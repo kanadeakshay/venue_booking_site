@@ -8,6 +8,7 @@ import { ProfileCard, UserInfoCard } from '../components/UI/ProfileCards';
 import { DealsHistory } from '../components/UI/DealsHistory';
 import { isEmpty } from '../helpers/isObjEmpty';
 import AddVenueModel from '../components/UI/AddVenueModel';
+import getDeals from '../actions/dealsHistory.actions';
 
 const ProfilePage = (props) => {
 
@@ -15,6 +16,7 @@ const ProfilePage = (props) => {
     const auth = useSelector(state => state.auth);
     const userInfo = useSelector(state => state.userInfo);
     const ownerVenues = useSelector(state => state.ownerVenues);
+    const deals = useSelector(state => state.deals);
 
     const [addVenueModalShow, setAddVenueModalShow] = useState(false);
 
@@ -54,7 +56,10 @@ const ProfilePage = (props) => {
 
                         <div className="col-md-8">
                             <div className="card mb-3">
-                                <DealsHistory role={role} />
+                                <DealsHistory
+                                    role={role}
+                                    allDeals={deals.allDeals}
+                                />
                             </div>
                             {
                                 userInfo.user.role === 'dealer' ?
