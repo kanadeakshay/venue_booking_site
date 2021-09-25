@@ -6,40 +6,49 @@ const userlogin = (user, userType) => {
         dispatch({
             type: authConstants.LOGIN_REQUEST
         });
-
-        let res = {};
-        if (userType === 'client') {
-            res = await axios.post('/signin', {
-                ...user
-            });
-        }
-        if (userType === 'dealer') {
-            res = await axios.post('/dealer/signin', {
-                ...user
-            });
-        }
-
-        if (res.status === 200) {
-            const { token, user } = res.data;
-            localStorage.setItem('token', token);
-            localStorage.setItem('user', JSON.stringify(user));
-            dispatch({
-                type: authConstants.LOGIN_SUCCESS,
-                payload: {
-                    token, user
-                }
-            });
-        } else {
-            if (res.status === 400) {
-                dispatch({
-                    type: authConstants.LOGIN_FAILURE,
-                    payload: {
-                        error: res.data.msg
-                    }
-                })
+        try {
+            let res = {};
+            if (userType === 'client') {
+                res = await axios.post('/signin', {
+                    ...user
+                });
             }
+            if (userType === 'dealer') {
+                res = await axios.post('/dealer/signin', {
+                    ...user
+                });
+            }
+            if (res.status === 200) {
+                const { token, user } = res.data;
+                localStorage.setItem('token', token);
+                localStorage.setItem('user', JSON.stringify(user));
+                dispatch({
+                    type: authConstants.LOGIN_SUCCESS,
+                    payload: {
+                        token, user
+                    }
+                });
+            }
+            // => This code is not working
+            // if (res.status === 404) {
+            //     console.log(res.data.error);
+            //     dispatch({
+            //         type: authConstants.LOGIN_FAILURE,
+            //         payload: {
+            //             msg: res.data.msg
+            //         }
+            //     })
+            // }
+        } catch (error) {
+            dispatch({
+                type: authConstants.LOGIN_FAILURE,
+                payload: {
+                    msg: "Password is incorrect or You are not register"
+                }
+            })
         }
     }
+
 }
 
 const isUserLoggedIn = () => {
