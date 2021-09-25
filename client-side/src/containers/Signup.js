@@ -5,6 +5,7 @@ import Input from '../components/UI/Input';
 import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { userRegister } from '../actions/register.actions';
+import MessageBox from '../components/UI/MessageBox';
 
 const Signup = (props) => {
 
@@ -15,12 +16,15 @@ const Signup = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [messageModalShow, setMessageModalShow] = useState(false);
+
     const dispatch = useDispatch();
 
     const register = (e) => {
         e.preventDefault();
         const userInfo = { userType, firstName, lastName, contactNumber, email, password };
         dispatch(userRegister(userInfo));
+        setMessageModalShow(true);
     }
 
     const auth = useSelector(state => state.auth);
@@ -43,6 +47,11 @@ const Signup = (props) => {
     return (
         <Layout>
             <Container>
+                <MessageBox
+                    show={messageModalShow}
+                    onHide={() => setMessageModalShow(false)}
+                    message={registrationStatus.message}
+                />
                 <h2 className='text-center'>SIGN UP 📝</h2>
                 <Row style={{ marginTop: '30px' }}>
                     <Col md={{ span: 6, offset: 3 }}>
@@ -82,6 +91,7 @@ const Signup = (props) => {
                                         <Form.Label>Choose User Type</Form.Label>
                                         <br />
                                         <Form.Check
+                                            required
                                             inline
                                             type='radio'
                                             name='userType'
@@ -117,7 +127,9 @@ const Signup = (props) => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            <Button variant="primary" type="submit" style={{ marginRight: '10px' }}>Sign Up</Button>
+                            <Button variant="primary" type="submit" style={{ marginRight: '10px' }}>
+                                Sign Up
+                            </Button>
                             <Button variant="danger" type="reset" style={{ marginLeft: '10px' }}>Reset</Button>
                         </Form>
                     </Col>
