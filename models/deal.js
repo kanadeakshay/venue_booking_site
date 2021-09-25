@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
 
 const dealSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    venue: {
-        venueId: { type: mongoose.Schema.Types.ObjectId, ref: 'Venue' },
-        ownerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        name: String
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    venueId: { type: mongoose.Schema.Types.ObjectId, ref: 'Venue', required: true },
+    venueName: {
+        type: String,
+        required: true
     },
-    date: {
-        type: Date
+    venueOwnerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    eventDate: {
+        type: String,
+        required: true
     },
     bill: {
         type: Number,
