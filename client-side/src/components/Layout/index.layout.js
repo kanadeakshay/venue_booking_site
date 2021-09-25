@@ -7,6 +7,7 @@ import { userInfo } from '../../actions/userInfo.actions';
 import { getOwnerVenues } from '../../actions/venue.actions';
 import getDeals from '../../actions/dealsHistory.actions';
 import Avatar from 'boring-avatars';
+import './layout.style.css';
 
 const Layout = (props) => {
 
@@ -30,10 +31,20 @@ const Layout = (props) => {
     const LoggedInLinks = (props) => {
         const { _id } = auth.user;
         return (
-            <Nav>
+            <Nav className="test">
                 <li className="nav-item">
                     <Link to={`/profile/${_id}`} className="nav-link" onClick={getUserInfo} style={{ textTransform: 'capitalize' }}>
-                        🐱‍👤{auth.user.firstName}
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <div className="avatar-border">
+                                <Avatar
+                                    size={25}
+                                    name={auth.user.fullName}
+                                    variant="bauhaus"
+                                    colors={["#A3A948", "#EDB92E", "#F85931", "#CE1836", "#009989"]}
+                                />
+                            </div>
+                            <span style={{ marginLeft: "5px", textTransform: "uppercase" }}>{auth.user.firstName}</span>
+                        </div>
                     </Link>
                 </li>
                 <li className="nav-item" style={{ cursor: "pointer" }}>
