@@ -1,7 +1,6 @@
 import { registerConstants } from "../actions/constants";
 
 const initialState = {
-    error: null,
     message: '',
     loading: false
 }
@@ -14,19 +13,18 @@ const registerReducer = (state = initialState, action) => {
                 loading: true
             }
             break;
+
         case registerConstants.REGISTER_SUCCESS:
             state = {
-                ...state,
                 loading: false,
                 message: action.payload.msg
             }
             break;
+
         case registerConstants.REGISTER_FAILURE:
             state = {
-                ...state,
                 loading: false,
-                message: action.payload.msg,
-                error: action.payload.error
+                message: action.payload.msg
             }
             break;
 

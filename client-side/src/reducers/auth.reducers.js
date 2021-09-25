@@ -37,6 +37,13 @@ const authReducer = (state = initialState, action) => {
             }
             break;
 
+        case authConstants.LOGIN_FAILURE:
+            state = {
+                ...state,
+                message: action.payload.msg
+            }
+            break;
+
         case authConstants.LOGOUT_REQUEST:
             state = {
                 ...state,
