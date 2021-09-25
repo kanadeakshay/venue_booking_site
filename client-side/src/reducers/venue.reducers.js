@@ -11,7 +11,8 @@ const initialState = {
         price: '',
         venuePictures: [],
         ownerInfo: {},
-        reviews: []
+        reviews: [],
+        ownerId: ''
     },
     error: null,
     message: '',
