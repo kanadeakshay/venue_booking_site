@@ -39,11 +39,30 @@ const addVenueConstants = {
     ADD_VENUE_SUCCESS: 'ADD_VENUE_SUCCESS',
 }
 
+const checkoutConstants = {
+    CHECKOUT_REQUEST: 'CHECKOUT_REQUEST',
+    CHECKOUT_FAILURE: 'CHECKOUT_FAILURE',
+    CHECKOUT_SUCCESS: 'CHECKOUT_SUCCESS'
+}
+
+const dealsConstants = {
+    GET_DEALS_REQUEST: 'DEALS_REQUEST',
+    GET_DEALS_FAILURE: 'DEALS_FAILURE',
+    GET_DEALS_SUCCESS: 'DEALS_SUCCESS'
+}
+
+const serverConstants = {
+    SERVER_OFFLINE: 'SERVER_OFFLINE'
+}
+
 export {
     authConstants,
     registerConstants,
     userInfoConstants,
     venueConstants,
-    addVenueConstants
+    addVenueConstants,
+    checkoutConstants,
+    dealsConstants,
+    serverConstants
 }
 
