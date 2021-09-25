@@ -23,9 +23,6 @@ const Input = (props) => {
                     required
                 />
             }
-            <Form.Text className="text-muted">
-                {props.errorMessage}
-            </Form.Text>
         </Form.Group>
     )
 }
