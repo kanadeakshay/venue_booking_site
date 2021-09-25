@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { api } from '../urlConfig';
 import store from '../store';
-import { authConstants } from '../actions/constants';
+import { authConstants, serverConstants } from '../actions/constants';
 
 const token = window.localStorage.getItem('token');
 
@@ -23,10 +23,19 @@ axiosInstance.interceptors.request.use((req) => {
 axiosInstance.interceptors.response.use((res) => {
     return res;
 }, (error) => {
-    const { status } = error.response;
-    if (status === 500 || status === 400) {
-        localStorage.clear();
-        store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
+    if (error.response === undefined) {
+        store.dispatch({
+            type: serverConstants.SERVER_OFFLINE,
+            payload: {
+                msg: "Server is not running😢"
+            }
+        })
+    } else {
+        const { status } = error.response;
+        if (status === 500 || status === 400) {
+            localStorage.clear();
+            store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
+        }
     }
     return Promise.reject(error);
 })
