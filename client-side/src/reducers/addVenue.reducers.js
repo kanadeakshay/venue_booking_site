@@ -18,11 +18,12 @@ const addVenueReducer = (state = initialState, action) => {
         case addVenueConstants.ADD_VENUE_SUCCESS:
             state = {
                 ...state,
-                saving: false
+                saving: false,
+                message: '🎉Venue added successfully! Refresh this page'
             }
             break;
 
-        case addVenueConstants.ADD_VENUE_REQUEST:
+        case addVenueConstants.ADD_VENUE_FAILURE:
             state = {
                 ...state,
                 error: action.payload.error,
