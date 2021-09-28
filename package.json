@@ -26,7 +26,8 @@
     "mongoose": "^5.13.7",
     "multer": "^1.4.3",
     "shortid": "^2.2.16",
-    "slugify": "^1.6.0"
+    "slugify": "^1.6.0",
+    "stripe": "^8.176.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
