@@ -16,6 +16,10 @@ const dealSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    status: {
+        type: String,
+        default: "blue"
+    },
     date_added: {
         type: Date,
         default: Date.now
