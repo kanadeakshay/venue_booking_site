@@ -37,13 +37,16 @@ const VenueCard = (props) => {
 
                 <div className="d-flex justify-content-between align-items-center">
                     <Link to={`/venue/${_id}`} className="btn-group">
-                        <Button variant="primary" onClick={getVenueInfo}>Details</Button>{' '}
+                        <Button variant="primary" size="sm" onClick={getVenueInfo}>Details</Button>{' '}
                     </Link>
                     {
                         isDelete === true ?
-                            <Button variant="danger">Delete</Button>
+                            <Button variant="danger" size="sm">Delete</Button>
                             :
-                            <Button variant="danger" onClick={() => setBookingModalShow(true)}>Book</Button>
+                            auth.user.role === 'dealer' ?
+                                <></>
+                                :
+                                <Button variant="danger" size="sm" onClick={() => setBookingModalShow(true)}>Book</Button>
                     }
                     <BookingModel
                         _id={_id}
