@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout/index.layout';
 import { Container, Spinner } from 'react-bootstrap';
 import VenueCard from '../components/UI/VenueCard';
@@ -10,6 +10,7 @@ import { isEmpty } from '../helpers/isObjEmpty';
 function Home() {
 
     const allVenuesInfo = useSelector(state => state.allVenuesInfo);
+    const auth = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -41,7 +42,7 @@ function Home() {
                             </div>
                             :
                             allVenuesInfo.allVenues.map((venue) => {
-                                const { _id, venueName, address, location, category, price, venuePictures } = venue;
+                                const { _id, venueName, address, location, category, price, venuePictures, ownerId } = venue;
                                 return (
                                     <div className="col-md-4">
                                         <VenueCard
@@ -49,10 +50,12 @@ function Home() {
                                             img2={venuePictures[1].img}
                                             venueName={venueName}
                                             _id={_id}
+                                            userId={auth.user._id}
                                             category={category}
                                             address={address}
                                             location={location}
                                             price={price}
+                                            ownerId={ownerId}
                                             style={{ width: "800px", height: "200px" }}
                                         />
                                     </div>
