@@ -4,6 +4,7 @@ import Input from './Input';
 import { addVenue } from '../../actions/venue.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import MessageBox from './MessageBox';
+import categories from '../../assets/data/categories'
 
 const AddVenueModel = (props) => {
 
@@ -116,11 +117,14 @@ const AddVenueModel = (props) => {
                                 <Form.Group className="mb-3">
                                     <Form.Label>Category</Form.Label>
                                     <select class="form-select" value={category} required onChange={(e) => setCategory(e.target.value)}>
-                                        <option selected>Select</option>
-                                        <option value="Bonquet">Bonquet</option>
-                                        <option value="Mirrage">Mirrage</option>
-                                        <option value="Seminar">Seminar</option>
-                                        <option value="Birthday">Birthday</option>
+                                        <option selected>-Select-</option>
+                                        {
+                                            categories.map((category) => {
+                                                return (
+                                                    <option value={category}>{category}</option>
+                                                )
+                                            })
+                                        }
                                     </select>
                                 </Form.Group>
                             </Col>
