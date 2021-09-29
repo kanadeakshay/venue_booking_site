@@ -39,16 +39,21 @@ const addVenueConstants = {
     ADD_VENUE_SUCCESS: 'ADD_VENUE_SUCCESS',
 }
 
-const checkoutConstants = {
-    CHECKOUT_REQUEST: 'CHECKOUT_REQUEST',
-    CHECKOUT_FAILURE: 'CHECKOUT_FAILURE',
-    CHECKOUT_SUCCESS: 'CHECKOUT_SUCCESS'
-}
-
 const dealsConstants = {
     GET_DEALS_REQUEST: 'DEALS_REQUEST',
     GET_DEALS_FAILURE: 'DEALS_FAILURE',
     GET_DEALS_SUCCESS: 'DEALS_SUCCESS'
+}
+
+const saveDealConstants = {
+    SAVE_DEAL_REQUEST: 'SAVE_DEAL_REQUEST',
+    SAVE_DEAL_FAILURE: 'SAVE_DEAL_FAILURE',
+    SAVE_DEAL_SUCCESS: 'SAVE_DEAL_SUCCESS',
+}
+const deleteDealConstants = {
+    DELETE_DEAL_REQUEST: 'DELETE_DEAL_REQUEST',
+    DELETE_DEAL_FAILURE: 'DELETE_DEAL_FAILURE',
+    DELETE_DEAL_SUCCESS: 'DELETE_DEAL_SUCCESS',
 }
 
 const serverConstants = {
@@ -61,8 +66,9 @@ export {
     userInfoConstants,
     venueConstants,
     addVenueConstants,
-    checkoutConstants,
     dealsConstants,
+    saveDealConstants,
+    deleteDealConstants,
     serverConstants
 }
 
