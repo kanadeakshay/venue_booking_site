@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { signout } from '../../actions/auth.actions';
 import { userInfo } from '../../actions/userInfo.actions';
@@ -67,10 +67,14 @@ const Layout = (props) => {
         );
     }
 
+    const refresh = () => {
+        window.location.reload();
+    }
+
     if (serverStatus.message === null) {
         return (
             <>
-                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ marginBottom: "30px" }}>
+                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ marginBottom: "15px" }}>
                     <Container>
                         <Link to={`/`} className="navbar-brand">🤝KAPPA</Link>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -85,9 +89,12 @@ const Layout = (props) => {
         )
     } else {
         return (
-            <>
-                <h1 className="text-center" style={{ marginTop: "80px" }}>{serverStatus.message}</h1>
-            </>
+            <Container className="text-center">
+                <h1 style={{ marginTop: "80px" }}>{serverStatus.message}</h1>
+                <Button variant="primary" onClick={refresh}>
+                    Refresh this page
+                </Button>
+            </Container>
         )
     }
 
