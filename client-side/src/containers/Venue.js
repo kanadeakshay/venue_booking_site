@@ -12,6 +12,7 @@ import { Redirect } from 'react-router';
 const VenuePage = (props) => {
     document.title = "KAPPA | Venue Details";
     const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth)
     const [bookingModalShow, setBookingModalShow] = useState(false);
     const oneVenueInfo = useSelector(state => state.oneVenueInfo);
     const { _id, venueName, description, address, location, category, price, venuePictures, ownerInfo, ownerId } = oneVenueInfo.venue;
@@ -83,9 +84,16 @@ const VenuePage = (props) => {
                                 </table>
                             </div>
 
-                            <hr></hr>
 
-                            <Button variant="danger" onClick={() => setBookingModalShow(true)}>Book</Button>
+                            {
+                                auth.user.role === "client" ?
+                                    <>
+                                        <hr></hr>
+                                        <Button variant="danger" onClick={() => setBookingModalShow(true)}>Book</Button>
+                                    </>
+                                    :
+                                    null
+                            }
                             <BookingModel
                                 _id={_id}
                                 venueName={venueName}
