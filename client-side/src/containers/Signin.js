@@ -10,7 +10,7 @@ import client_signin from '../assets/images/client-signin.svg';
 import dealer_signin from '../assets/images/dealer-signin.svg';
 
 const Signin = () => {
-    Document.title = "KAPPA | Sign In";
+    document.title = "KAPPA | Sign In";
     const [userModalShow, setUserModalShow] = useState(false);
     const [DealerModalShow, setDealerModalShow] = useState(false);
 
