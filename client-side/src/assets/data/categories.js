@@ -2,13 +2,13 @@ const categories = [
     'Art Gallery',
     'Academic Venues',
     'Community Center',
-    'Reception',
-    'Wedding',
     'Conference Hall',
     'Clubs',
     'Game Arenas',
+    'Reception',
     'Restaurant',
     'Seminar Hall',
+    'Wedding',
 ];
 
 export default categories
