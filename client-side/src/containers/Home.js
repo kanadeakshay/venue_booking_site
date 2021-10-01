@@ -8,7 +8,7 @@ import { getPublicURL } from '../urlConfig';
 import { isEmpty } from '../helpers/isObjEmpty';
 
 function Home() {
-
+    document.title = "KAPPA | Home";
     const allVenuesInfo = useSelector(state => state.allVenuesInfo);
     const auth = useSelector(state => state.auth);
     const dispatch = useDispatch();

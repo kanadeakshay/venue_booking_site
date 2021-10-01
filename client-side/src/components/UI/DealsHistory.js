@@ -8,7 +8,7 @@ const DealsHistory = (props) => {
             <h4>Last few bookings</h4>
             {
                 isEmpty(props.allDeals) ?
-                    <h5>
+                    <h5 className = "text-muted" >
                         {
                             props.role === 'client' ?
                                 `You didn't booked any venues`
