@@ -11,7 +11,7 @@ import AddVenueModel from '../components/UI/AddVenueModel';
 import getDeals from '../actions/dealsHistory.actions';
 
 const ProfilePage = (props) => {
-
+    Document.title = "KAPPA | Profile";
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
     const userInfo = useSelector(state => state.userInfo);

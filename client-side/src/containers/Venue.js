@@ -10,7 +10,7 @@ import BookingModel from '../components/UI/BookingModel';
 import { Redirect } from 'react-router';
 
 const VenuePage = (props) => {
-
+    Document.title = "KAPPA | Venue Details";
     const dispatch = useDispatch();
     const [bookingModalShow, setBookingModalShow] = useState(false);
     const oneVenueInfo = useSelector(state => state.oneVenueInfo);

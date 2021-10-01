@@ -8,7 +8,7 @@ import { userRegister } from '../actions/register.actions';
 import MessageBox from '../components/UI/MessageBox';
 
 const Signup = (props) => {
-
+    Document.title = "KAPPA | Sign Up";
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [contactNumber, setContactNumber] = useState('');
