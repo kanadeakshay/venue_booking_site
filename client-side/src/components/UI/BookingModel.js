@@ -53,7 +53,7 @@ const BookingModel = (props) => {
                     <span style={{ color: 'red' }}><strong>Note: </strong></span>
                     Before booking always contact owner
                 </h5>
-
+                <hr />
                 <Form onSubmit={gotoCheckoutPage}>
                     <Row>
                         <Col md={6}>

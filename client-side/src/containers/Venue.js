@@ -74,11 +74,22 @@ const VenuePage = (props) => {
                                     <tbody>
                                         <tr>
                                             <th className="pl-0 w-25" scope="row"><strong>Dealer Name</strong></th>
-                                            <td style={{ textTransform: 'capitalize' }}>{ownerInfo.ownerName}</td>
+                                            {
+                                                auth.token === null ?
+                                                    <td rowSpan="2" className="text-muted" style={{}}>
+                                                        Login to see the Dealer Details
+                                                    </td>
+                                                    :
+                                                    <td style={{ textTransform: 'capitalize' }}>{ownerInfo.ownerName}</td>
+                                            }
                                         </tr>
                                         <tr>
                                             <th className="pl-0 w-25" scope="row"><strong>Contact no</strong></th>
-                                            <td>{ownerInfo.contactNumber}</td>
+                                            {
+                                                auth.token === null ?
+                                                    null :
+                                                    <td>{ownerInfo.contactNumber}</td>
+                                            }
                                         </tr>
                                     </tbody>
                                 </table>
