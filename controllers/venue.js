@@ -1,5 +1,14 @@
 const Venue = require('../models/venue');
+const Deal = require('../models/deal');
 const slugify = require('slugify');
+
+function isEmpty(obj) {
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 
 const createVenue = (req, res) => {
     const { venueName, address, location, category, price, description } = req.body;
@@ -63,10 +72,23 @@ const getAllVenues = async (req, res) => {
     else return res.status(400).json({ msg: `Something happend while fectching all venues` });
 }
 
+const checkAvailability = (req, res) => {
+    const { venueId, eventDate } = req.body;
+    Deal.find({ venueId: venueId, eventDate: eventDate })
+        .exec((error, _deal) => {
+            if (error) return res.status(400).json({ msg: "Something went wrong", error });
+            if (isEmpty(_deal)) {
+                return res.status(200).json({ msg: "No deal found, Available" });
+            } else {
+                return res.status(200).json({ msg: "Venue is booked for date, choose another date" })
+            }
+        })
+}
 
 module.exports = {
     createVenue,
     getVenueByVenueId,
     getAllVenuesByOwnerId,
-    getAllVenues
+    getAllVenues,
+    checkAvailability
 }
