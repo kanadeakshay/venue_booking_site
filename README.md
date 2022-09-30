@@ -19,7 +19,15 @@ cd venue_booking_site
 npm install
 ```
 
-3. Run it 🚴‍♂️
+3. Create `.env` file in the root directory and add following variables
+
+```bash
+dburl = 'your mongodb cluster url'
+PORT = 'the port in which you want to run your nodejs/backend'
+jwt_secret = 'your jwt secret'
+```
+
+4. Run it 🚴‍♂️
 
 - Backend => First run following command in root directory, it will start server on port 2000
 - Frontend => Second run same command in client side folder on another terminal, it will lauch react app
