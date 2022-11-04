@@ -19,7 +19,7 @@ const venuesInfoReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 loading: false,
-                allVenues: action.payload
+                allVenues: action.payload.slice(0).reverse()
             }
             break;
         case venueConstants.GETALL_VENUES_FAILURE:
